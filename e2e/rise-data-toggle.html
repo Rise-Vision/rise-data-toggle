@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-      .text { 
+      .text {
         font-size: 72px;
         font-family: sans-serif;
       }
@@ -31,7 +31,7 @@
     </script>
     <script src="https://widgets.risevision.com/__STAGE__/common/config-test.min.js"></script>
     <script src="https://widgets.risevision.com/__STAGE__/common/common-template.min.js"></script>
-    <script src="https://widgets.risevision.com/staging/components/rise-text/__VERSION__/rise-text.js"></script>
+    <script src="https://widgets.risevision.com/staging/components/rise-data-toggle/__VERSION__/rise-data-toggle.js"></script>
     <script>
       if (document.domain.indexOf("localhost") === -1) {
         try {
@@ -47,26 +47,30 @@
     </style>
   </head>
   <body>
-    <rise-text value="Hello World!" class="text"></rise-text>
-    <br />
-    <rise-text value="Hello World!" class="text red"></rise-text>
-    <br />
-    <rise-text value="Hello World!" class="text green"></rise-text>
+    <rise-data-toggle id="rise-data-toggle-01" value="true">
+    </rise-data-toggle>
+
+    <h1 id="block" style="display: none">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </h1>
 
     <script>
       function configureComponents() {
         console.log('Rise components ready');
+
+        const toggleElement = document.getElementById( "rise-data-toggle-01" );
+        const block = document.getElementById( "block" );
+
+        toggleElement.addEventListener( "data-update", event => {
+          const visible = event.detail.value;
+
+          if( visible ) {
+            block.style.display = 'block';
+          }
+        } );
       }
 
       window.addEventListener( "rise-components-ready", configureComponents );
-
-      // Demonstrating how to handle no connection to local messaging via listening for event
-      // Note: the connection can also be checked via RisePlayerConfiguration.LocalMessaging.isConnected()
-      window.addEventListener( "rise-local-messaging-connection", event => {
-        if ( !event.detail.isConnected ) {
-          console.log( "no connection to local messaging");
-        }
-      } );
     </script>
     <script>
       RisePlayerConfiguration.configure();
