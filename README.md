@@ -14,7 +14,7 @@
 
 ### Labels
 
-The component may define a 'label' attribute that defines the text that will appear for this instance in the template editor.
+The component should define a 'label' attribute that defines the text that will appear for this instance in the template editor.
 
 This attribute holds a literal value, for example:
 
@@ -34,7 +34,7 @@ This component receives the following list of attributes:
 
 - **id**: ( string ): Unique HTMLElement id.
 - **value**: ( string / required ): true or false.
-- **label**: ( string / optional ): An optional label key for the text that will appear in the template editor. See 'Labels' section above.
+- **label**: ( string / optional ): A label key for the text that will appear in the template editor. See 'Labels' section above.
 
 ### Events
 
@@ -45,7 +45,7 @@ The component sends the following events:
 ```
   element.addEventListener('data-update', function (event) {
     console.log(event.type); // prints 'data-update'
-    console.log(event.detail.value); // prints new component boolean value.
+    console.log(event.detail.value ? 'on' : 'off'); // prints 'on' or 'off' depending on the new component's boolean value.
   });
 ```
 
@@ -86,7 +86,7 @@ Run the following command in Terminal: `polymer serve`.
 Now in your browser, navigate to:
 
 ```
-http://127.0.0.1:8081/components/rise-data-toggle/demo/src/rise-data-toggle-dev.html
+http://127.0.0.1:8081/components/rise-data-toggle/demo/src/rise-data-toggle.html
 ```
 
 ## Submitting Issues
